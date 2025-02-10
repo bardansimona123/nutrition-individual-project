@@ -1,12 +1,13 @@
-// App.jsx
 import React from 'react';
+import MainPage from './MainPage';
 
 const App = () => {
   return (
     <div>
-      <h1>Hello from App</h1>
+      
+      <MainPage />
     </div>
   );
 };
 
-export default App;  // Asigură-te că adaugi exportul corect
+export default App;
