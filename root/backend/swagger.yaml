@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Nutrition API
+  description: API pentru gestionarea aportului zilnic de calorii și produse nerecomandate.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api
+paths:
+  /auth/register:
+    post:
+      summary: Înregistrare utilizator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+      responses:
+        201:
+          description: Utilizator înregistrat cu succes
+        500:
+          description: Eroare server
+
+  /auth/login:
+    post:
+      summary: Autentificare utilizator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        200:
+          description: Autentificare reușită
+        404:
+          description: Utilizator inexistent
+        400:
+          description: Credențiale invalide
+
+  /auth/logout:
+    post:
+      summary: Deconectare utilizator
+      responses:
+        200:
+          description: Deconectare reușită
+
+  /products/search:
+    get:
+      summary: Căutare produs
+      parameters:
+        - name: query
+          in: query
+          description: Termenul de căutare pentru produs
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Returnează produsele găsite
+
+  /calories/public:
+    post:
+      summary: Obține aportul zilnic de kcal și lista de produse nerecomandate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                height:
+                  type: number
+                age:
+                  type: number
+                currentWeight:
+                  type: number
+                desiredWeight:
+                  type: number
+                bloodType:
+                  type: integer
+                  enum: [1, 2, 3, 4]
+              required:
+                - height
+                - age
+                - currentWeight
+                - desiredWeight
+                - bloodType
+      responses:
+        200:
+          description: Returnează aportul zilnic recomandat de kcal și lista de produse nerecomandate

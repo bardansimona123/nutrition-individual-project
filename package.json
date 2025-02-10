@@ -28,7 +28,9 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "swagger-ui-express": "^5.0.1",
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",

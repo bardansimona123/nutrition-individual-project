@@ -8,3 +8,8 @@ import authReducer from './authSlice';
 //     loader: loaderReducer,
 //   },
 // });
+export const store = configureStore({
+    reducer: {
+      auth: authReducer,
+    },
+  })
