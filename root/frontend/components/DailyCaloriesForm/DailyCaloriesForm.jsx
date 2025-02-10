@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DailyCalorieIntake from './DailyCalorieIntake';
+import DailyCalorieIntake from '../DailyCalorieIntake/DailyCalorieIntake';
 import styles from './DailyCaloriesForm.module.css';
 
 const DailyCaloriesForm = () => {
