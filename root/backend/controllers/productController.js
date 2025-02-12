@@ -1,5 +1,5 @@
-import Product from '../models/Product.js';
-import CalorieIntake from '../models/CalorieIntake.js';
+
+import Product from '../models/CalorieIntake.js';
 
 export const getDailyIntakePublic = async (req, res) => {
   try {

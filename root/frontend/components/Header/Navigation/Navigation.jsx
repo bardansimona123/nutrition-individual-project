@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Navigation.module.css';
 
 const Navigation = ({ isLoggedIn }) => (
   <div className={styles.navigation}>
     {isLoggedIn ? (
       <>
-        <a href="/diary">Diary</a>
-        <a href="/calculator">Calculator</a>
+        <Link to="/diary">Diary</Link>
+        <Link to="/calculator">Calculator</Link>
       </>
     ) : (
       <>
-        <a href="/login">Log In</a>
-        <a href="/register">Registration</a>
+        <Link to="/login">Log In</Link>
+        <Link to="/register">Registration</Link>
       </>
     )}
   </div>

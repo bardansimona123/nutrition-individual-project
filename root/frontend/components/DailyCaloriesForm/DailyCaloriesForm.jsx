@@ -33,8 +33,10 @@ const DailyCaloriesForm = () => {
 
   const fetchNonRecommendedFoods = async () => {
     try {
-      const response = await fetch(`/routes/foods?bloodType=${formData.bloodType}`);
+      const response = await fetch(`http://localhost:5000/routes/foods?bloodType=${formData.bloodType}`);
+
       const data = await response.json();
+      console.log(data);
       setNonRecommendedFoods(data.nonRecommendedCategories || []);
     } catch (error) {
       console.error('Error fetching non-recommended foods:', error);

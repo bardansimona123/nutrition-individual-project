@@ -1,6 +1,8 @@
-export default {
-    base: '/nutrition-individual-project/',
-    build: {
-        outDir: 'dist'
-    }
-}
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/nutrition-individual-project/' : '/',
+  plugins: [react()],
+});

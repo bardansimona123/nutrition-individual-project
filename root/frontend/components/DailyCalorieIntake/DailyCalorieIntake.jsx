@@ -11,14 +11,15 @@ const DailyCalorieIntake = ({ calories, nonRecommendedFoods }) => (
     <div className={styles.separator}></div>
     <h3>Foods you should not eat</h3>
     <ol>
-        {nonRecommendedFoods.length > 0 ? (
-          nonRecommendedFoods.map((food, index) => (
-            <li key={index}>{food.category}</li>
-          ))
-        ) : (
-          <p>Loading non-recommended foods...</p>
-        )}
-      </ol>
+      {nonRecommendedFoods.length > 0 ? (
+        nonRecommendedFoods.map((food, index) => (
+          <li key={index}>{food.charAt(0).toUpperCase() + food.slice(1).toLowerCase()}</li>
+        ))
+      ) : (
+        <p>Loading non-recommended foods...</p>
+      )}
+    </ol>
+
   </div>
 );
 

@@ -16,6 +16,7 @@ const UserInfo = ({ userName, onLogout }) => {
   const cancelLogout = () => {
     setShowExitConfirmation(false);
   };
+  console.log(userName); // Verifică valoarea lui userName
 
   return (
     <div className={styles.userInfo}>

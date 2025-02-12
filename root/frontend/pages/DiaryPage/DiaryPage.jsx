@@ -1,55 +1,89 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function NutritionApp() {
+function DiaryPage() {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [addedProducts, setAddedProducts] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
 
-  const handleInputChange = (e) => {
+  useEffect(() => {
+    // Setăm data curentă la încărcarea paginii
+    const today = new Date().toISOString().split('T')[0];
+    setSelectedDate(today);
+  }, []);
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
+
+  const handleInputChange = async (e) => {
     const query = e.target.value;
     setProductName(query);
 
     if (query) {
-      const filteredProducts = databaseProducts.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase()) ||
-        product.categories.toLowerCase().includes(query.toLowerCase())
-      );
-      setSuggestions(filteredProducts);
+      try {
+        const response = await axios.get(`http://localhost:5000/api/products/search?query=${query}`);
+        setSuggestions(response.data);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
     } else {
       setSuggestions([]);
     }
   };
 
-  const handleAddProduct = () => {
-    const foundProduct = databaseProducts.find(
-      (product) => product.title.toLowerCase() === productName.toLowerCase()
-    );
+  const handleAddProduct = async () => {
+    try {
+      const foundProduct = suggestions.find(
+        (product) => product.title.toLowerCase() === productName.toLowerCase()
+      );
 
-    if (foundProduct && grams) {
-      const caloriesPerGram = foundProduct.calories / 100;
-      const totalCalories = caloriesPerGram * parseInt(grams);
+      if (foundProduct && grams) {
+        const caloriesPerGram = foundProduct.calories / 100;
+        const totalCalories = caloriesPerGram * parseInt(grams);
 
-      setAddedProducts([
-        ...addedProducts,
-        {
-          name: foundProduct.title,
-          grams: parseInt(grams),
-          calories: totalCalories,
-        },
-      ]);
-    } else {
-      alert('Produsul nu a fost găsit sau gramajul nu este valid');
+        setAddedProducts([
+          ...addedProducts,
+          {
+            name: foundProduct.title,
+            grams: parseInt(grams),
+            calories: totalCalories,
+          },
+        ]);
+
+        // Trimiterea produsului consumat către server
+        await axios.post('http://localhost:5000/api/products/consume', {
+          date: selectedDate,
+          productId: foundProduct._id,
+          quantity: grams,
+        });
+      } else {
+        alert('Produsul nu a fost găsit sau gramajul nu este valid');
+      }
+
+      setProductName('');
+      setGrams('');
+      setSuggestions([]);
+    } catch (error) {
+      console.error("Error adding product:", error);
     }
-
-    setProductName('');
-    setGrams('');
-    setSuggestions([]);
   };
 
-  const handleDeleteProduct = (index) => {
-    const newProductsList = addedProducts.filter((_, i) => i !== index);
-    setAddedProducts(newProductsList);
+  const handleDeleteProduct = async (index) => {
+    const product = addedProducts[index];
+    try {
+      await axios.post('http://localhost:5000/api/products/delete-consumed', {
+        date: selectedDate,
+        productId: product._id,
+      });
+
+      const newProductsList = addedProducts.filter((_, i) => i !== index);
+      setAddedProducts(newProductsList);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   const handleSuggestionClick = (product) => {
@@ -58,13 +92,11 @@ function NutritionApp() {
   };
 
   return (
-
     <div>
-      
       {/* Titlul cu data curentă */}
       <div>
         <h2>Data curentă: {selectedDate}</h2>
-        
+
         {/* SVG cu calendar pentru setarea datei */}
         <input
           type="date"
@@ -89,6 +121,7 @@ function NutritionApp() {
         />
         <button onClick={handleAddProduct}>+</button>
       </div>
+
       {suggestions.length > 0 && (
         <div>
           <ul>
@@ -100,6 +133,7 @@ function NutritionApp() {
           </ul>
         </div>
       )}
+
       <div>
         <h2>Products List</h2>
         <ul>
@@ -120,4 +154,4 @@ function NutritionApp() {
   );
 }
 
-export default NutritionApp;
+export default DiaryPage;
