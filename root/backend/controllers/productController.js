@@ -34,55 +34,6 @@ export const getDailyIntakePrivate = async (req, res) => {
   }
 };
 
-export const searchProducts = async (req, res) => {
-  try {
-    const { query } = req.query;
-    const products = await Product.find({ name: new RegExp(query, 'i') });
-
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to search products' });
-  }
-};
-
-export const addConsumedProduct = async (req, res) => {
-  try {
-    const { date, productId, quantity } = req.body;
-
-    const intake = await CalorieIntake.findOne({ user: req.user, date });
-    if (!intake) {
-      const newIntake = new CalorieIntake({
-        user: req.user,
-        date,
-        consumedProducts: [{ product: productId, quantity }],
-      });
-      await newIntake.save();
-      return res.status(201).json(newIntake);
-    }
-
-    intake.consumedProducts.push({ product: productId, quantity });
-    await intake.save();
-    res.json(intake);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to add consumed product' });
-  }
-};
-
-export const deleteConsumedProduct = async (req, res) => {
-  try {
-    const { date, productId } = req.body;
-
-    const intake = await CalorieIntake.findOne({ user: req.user, date });
-    if (!intake) return res.status(404).json({ error: 'No intake found for this date' });
-
-    intake.consumedProducts = intake.consumedProducts.filter(p => p.product.toString() !== productId);
-    await intake.save();
-    res.json(intake);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to delete consumed product' });
-  }
-};
-
 export const getDailyReport = async (req, res) => {
   try {
     const { date } = req.query;
