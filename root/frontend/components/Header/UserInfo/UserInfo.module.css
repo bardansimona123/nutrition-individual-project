@@ -1,0 +1,44 @@
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: auto;
+    width: auto;
+}
+
+.userInfo span {
+    width: 122px;
+    height: 12px;
+    font-family: 'Verdana', sans-serif; /* 'Verdana' și fallback pentru sans-serif */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    letter-spacing: 0.04em;
+    color: #212121;
+}
+  
+/* Stiluri pentru butonul Exit */
+.userInfo button {
+all: unset; /* Îndepărtează stilurile implicite ale butonului */
+cursor: pointer;
+width: 50px;
+height: 12px;
+font-family: 'Verdana', sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 17px;
+letter-spacing: 0.04em;
+color: #9B9FAA;
+
+}
+
+.userInfo button:hover {
+color: #FC842D; /* Poți adăuga un hover effect dacă vrei */
+}
+
+.separatorSvg {
+margin-top: -19px;
+}

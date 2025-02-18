@@ -21,13 +21,16 @@ const UserInfo = ({ userName, onLogout }) => {
   return (
     <div className={styles.userInfo}>
       {userName ? <span>{userName}</span> : null}
+      
       {userName && (
         <>
-          <div className={styles.separator} />
+          <svg width="2" height="32" viewBox="0 0 2 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.separatorSvg}>
+            <path d="M1 0L0.999999 32" stroke="#E0E0E0" strokeWidth="2"/>
+          </svg>
           <button onClick={handleLogout}>Exit</button>
         </>
       )}
-
+  
       {showExitConfirmation && (
         <div className={styles.exitConfirmation}>
           <p>Are you sure you want to log out?</p>
@@ -36,7 +39,7 @@ const UserInfo = ({ userName, onLogout }) => {
         </div>
       )}
     </div>
-  );
+  );  
 };
 
 export default UserInfo;

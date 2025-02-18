@@ -1,0 +1,14 @@
+.logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.logoText {
+    display: flex;
+    align-items: last baseline;
+    gap: 5.71px; /* Aplică distanța între imagini */
+    margin-left: -12px;
+}
+  
+  
+  

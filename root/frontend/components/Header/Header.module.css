@@ -1,8 +1,10 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
+  display: flex;
+  align-items: baseline; /* Aliniaza toate elementele de jos */
+  justify-content: space-between;
+}
+
+.header svg {
+  transform: translateY(10px);
+}
   

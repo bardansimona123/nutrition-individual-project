@@ -16,6 +16,7 @@ function App() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
+    console.log("Stored Token:", storedToken);
     if (storedToken) {
       try {
         const decodedToken = jwtDecode(storedToken);
