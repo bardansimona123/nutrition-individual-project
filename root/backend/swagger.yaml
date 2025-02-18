@@ -108,3 +108,109 @@ paths:
       responses:
         200:
           description: Returnează aportul zilnic recomandat de kcal și lista de produse nerecomandate
+
+  /api/products:
+    get:
+      summary: Obține detaliile produsului
+      description: Căutăm un produs după titlu pentru a obține informații despre acesta.
+      operationId: getProductByTitle
+      parameters:
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Titlul produsului pe care dorim să-l căutăm
+      responses:
+        '200':
+          description: Produs găsit cu succes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  weight:
+                    type: number
+                  calories:
+                    type: number
+                  categories:
+                    type: string
+                  groupBloodNotAllowed:
+                    type: array
+                    items:
+                      type: boolean
+        '404':
+          description: Produsul nu a fost găsit
+        '500':
+          description: Eroare la obținerea produsului
+
+    post:
+      summary: Adaugă un produs nou (doar local)
+      description: Permite adăugarea unui produs în lista locală, fără a-l salva în baza de date.
+      operationId: addProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                weight:
+                  type: number
+                calories:
+                  type: number
+                categories:
+                  type: string
+                groupBloodNotAllowed:
+                  type: array
+                  items:
+                    type: boolean
+      responses:
+        '201':
+          description: Produs adăugat cu succes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  weight:
+                    type: number
+                  calories:
+                    type: number
+                  categories:
+                    type: string
+                  groupBloodNotAllowed:
+                    type: array
+                    items:
+                      type: boolean
+        '400':
+          description: Eroare la adăugarea produsului
+
+    
+  /products/{title}:
+    delete:
+      summary: Șterge un produs
+      description: Șterge un produs pe baza titlului său din baza de date.
+      operationId: deleteProduct
+      parameters:
+        - name: title
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Titlul produsului pe care dorim să-l ștergem
+      responses:
+        '200':
+          description: Produsul a fost șters cu succes
+        '400':
+          description: Lipsă titlu produs
+        '404':
+          description: Produsul nu a fost găsit
+        '500':
+          description: Eroare la ștergerea produsului

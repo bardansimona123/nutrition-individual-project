@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 });
 
 
-router.delete('/api/products/:title', async (req, res) => {
+router.delete('/products/:title', async (req, res) => {
   const { title } = req.params;  // Folosește `req.params` pentru parametrii din URL
 
   if (!title) {
