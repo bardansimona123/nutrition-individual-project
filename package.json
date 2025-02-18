@@ -9,6 +9,7 @@
     "start": "node server.js",
     "dev": "vite",
     "build": "vite build",
+    "server": "nodemon server.js",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"

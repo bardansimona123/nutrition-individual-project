@@ -12,7 +12,14 @@ const DiaryAddProductForm = ({ addProduct }) => {
         console.log('Searching for product with title:', title);
         
         // Căutăm produsul în baza de date pentru a obține caloriile per 100g
-        const response = await axios.get(`http://localhost:5000/api/products?title=${title}`);
+        const token = 'JWT_SECRET';  // Înlocuiește cu token-ul JWT actual
+
+        const response = await axios.get(`http://localhost:5000/api/products?title=${title}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
         
         // Log pentru a verifica ce se returnează de la API
         console.log('Response from API:', response.data);
