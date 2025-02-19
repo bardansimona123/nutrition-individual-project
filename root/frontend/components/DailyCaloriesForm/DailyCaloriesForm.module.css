@@ -1,20 +1,178 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 100px;
+  width: 608px;
+  position: relative;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+}
+
+.title {
+  height: 85px;
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 140%;
+  color: #212121;
+  margin: 0;
+}
+
+.fieldsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 83%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.label {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9B9FAA;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #E0E0E0;
+  font-size: 17px;
+  outline: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  margin-bottom: 0; /* Elimină spațiul între label și input */
+}
+
+.field .input {
+  margin-top: 0; /* Elimină orice spațiu între input și linie */
+}
+
 .bloodTypes {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .bloodTypeOption {
-    cursor: pointer;
-  }
-  
-  .bloodTypeSVG {
-    width: 40px;
-    height: 40px;
-    transition: fill 0.3s ease, stroke 0.3s ease;
-  }
-  
-  .bloodTypeSVG.selected {
-    fill: orange;
-    stroke: orange;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+}
+
+.bloodTypeOption {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Ascunde input-ul radio */
+.bloodTypeOption input {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Cercul radio personalizat */
+.bloodTypeCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #E0E0E0;
+  background: #FFFFFF;
+}
+
+/* SVG-ul apare doar când input-ul este selectat */
+.bloodTypeCircle svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Stil pentru numărul grupului sanguin */
+.bloodTypeNumber {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
+.button {
+  width: 210px;
+  height: 43px;
+  background: #FC842D;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  color: #fff; /* Schimbă culoarea textului în alb */
+  border: none; /* Elimină borderul sau îl face transparent */
+  font-family: 'Verdana', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  bottom: 0;
+  right: 75px;
+  top: 490px;
+  position: absolute;
+}
+
+.button:hover {
+  background-color: #e6781b;
+}
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 572px;
+  max-width: 90%;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(33, 33, 33, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  background: white;
+  padding: 64px 80px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Ajustează după nevoie */
+  max-width: 90%;
+}
+

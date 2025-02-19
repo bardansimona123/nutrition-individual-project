@@ -1,10 +1,13 @@
 .header {
   display: flex;
   align-items: baseline; /* Aliniaza toate elementele de jos */
-  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+  padding-top: 40px;
 }
 
 .header svg {
   transform: translateY(10px);
 }
   
+

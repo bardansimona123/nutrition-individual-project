@@ -8,7 +8,7 @@ const Header = ({ isLoggedIn, userName, onLogout }) => (
   <header className={styles.header}>
     <Logo />
     <svg width="2" height="32" viewBox="0 0 2 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 0L0.999999 32" stroke="#E0E0E0" stroke-width="2"/>
+    <path d="M1 0L0.999999 32" stroke="#E0E0E0" strokeWidth="2"/>
     </svg>
     <Navigation isLoggedIn={isLoggedIn} />
     <UserInfo userName={userName} onLogout={onLogout} />

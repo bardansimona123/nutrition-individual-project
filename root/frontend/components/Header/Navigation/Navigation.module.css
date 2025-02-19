@@ -1,0 +1,25 @@
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.navigation a {
+font-family: 'Verdana';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+letter-spacing: 0.04em;
+text-transform: uppercase;
+color: #9B9FAA;
+text-decoration: none;
+}
+  
+.navigation a:hover,
+.navigation a:active,
+.navigation .active {
+color: #212121;
+}
+  

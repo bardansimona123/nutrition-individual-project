@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { NavLink } from "react-router-dom";
 import styles from './Navigation.module.css';
 
 const Navigation = ({ isLoggedIn }) => (
   <div className={styles.navigation}>
     {isLoggedIn ? (
       <>
-        <Link to="/diary">Diary</Link>
-        <Link to="/calculator">Calculator</Link>
+        <NavLink to="/diary" className={({ isActive }) => isActive ? styles.active : ""}>Diary</NavLink>
+        <NavLink to="/calculator" className={({ isActive }) => isActive ? styles.active : ""}>Calculator</NavLink>
       </>
     ) : (
       <>
-        <Link to="/login">Log In</Link>
-        <Link to="/register">Registration</Link>
+        <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : ""}>Log In</NavLink>
+        <NavLink to="/register" className={({ isActive }) => isActive ? styles.active : ""}>Registration</NavLink>
       </>
     )}
   </div>

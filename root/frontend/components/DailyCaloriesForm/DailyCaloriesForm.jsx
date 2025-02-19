@@ -57,79 +57,109 @@ const DailyCaloriesForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h2>Calculate your daily calorie intake right now</h2>
-        <div className={styles.field}>
-          <label>Height</label>
-          <input
-            type="number"
-            name="height"
-            value={formData.height}
-            onChange={handleChange}
-            placeholder="cm"
-            required
-          />
-        </div>
-        <div className={styles.field}>
-          <label>Age</label>
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            placeholder="years"
-            required
-          />
-        </div>
-        <div className={styles.field}>
-          <label>Current weight</label>
-          <input
-            type="number"
-            name="currentWeight"
-            value={formData.currentWeight}
-            onChange={handleChange}
-            placeholder="kg"
-            required
-          />
-        </div>
-        <div className={styles.field}>
-          <label>Desired weight</label>
-          <input
-            type="number"
-            name="desiredWeight"
-            value={formData.desiredWeight}
-            onChange={handleChange}
-            placeholder="kg"
-            required
-          />
-        </div>
-        <div className={styles.field}>
-          <label>Blood Type</label>
-          <div className={styles.bloodTypes}>
-            {['1', '2', '3', '4'].map((type) => (
-              <label key={type} className={styles.bloodTypeOption}>
-                <input
-                  type="radio"
-                  name="bloodType"
-                  value={type}
-                  checked={formData.bloodType === type}
-                  onChange={() => handleBloodTypeChange(type)}
-                />
-                {type}
-              </label>
-            ))}
+        <h2 className={styles.title}>Calculate your daily calorie intake right now</h2>
+        
+        <div className={styles.fieldsContainer}>
+          <div className={styles.column}>
+            <div className={styles.field}>
+              <label className={styles.label}>Height*</label>
+              <input
+                type="number"
+                name="height"
+                value={formData.height}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+            
+            <div className={styles.field}>
+              <label className={styles.label}>Age *</label>
+              <input
+                type="number"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+            
+            <div className={styles.field}>
+              <label className={styles.label}>Current weight *</label>
+              <input
+                type="number"
+                name="currentWeight"
+                value={formData.currentWeight}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.column}>
+            <div className={styles.field}>
+              <label className={styles.label}>Desired weight *</label>
+              <input
+                type="number"
+                name="desiredWeight"
+                value={formData.desiredWeight}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+            
+            <div className={styles.field}>
+              <label className={styles.label}>Blood type *</label>
+              <input className={styles.input} disabled /> {/* Linie sub Blood Type */}
+            </div>
+
+            <div className={styles.bloodTypes}>
+  {['1', '2', '3', '4'].map((type) => (
+    <label key={type} className={styles.bloodTypeOption}>
+      <input
+        type="radio"
+        name="bloodType"
+        value={type}
+        checked={formData.bloodType === type}
+        onChange={() => handleBloodTypeChange(type)}
+      />
+      <span className={styles.bloodTypeCircle}>
+        {formData.bloodType === type && (
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5" cy="5" r="5" fill="#FC842D" />
+          </svg>
+        )}
+      </span>
+      <span className={styles.bloodTypeNumber}>{type}</span>
+    </label>
+  ))}
+</div>
+
+
           </div>
         </div>
+
         <button type="submit" className={styles.button}>Start losing weight</button>
       </form>
 
       {showModal && (
-        <div className={styles.modal}>
+        <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
-            <button className={styles.closeButton} onClick={closeModal}>Close</button>
-            <DailyCalorieIntake calories={calories} nonRecommendedFoods={nonRecommendedFoods} />
+            <DailyCalorieIntake 
+              calories={calories} 
+              nonRecommendedFoods={nonRecommendedFoods} 
+              onClose={closeModal} 
+            />
           </div>
         </div>
       )}
+
+
+      
+
     </div>
   );
 };
