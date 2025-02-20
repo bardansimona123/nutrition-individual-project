@@ -9,6 +9,9 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import DiaryPage from './pages/DiaryPage/DiaryPage';
 import CalculatorPage from './pages/CalculatorPage/CalculatorPage';
 import Header from './components/Header/Header';
+import Sidebar from "./components/Sidebar/Sidebar";
+import PageLayout from "./components/PageLayout/PageLayout";
+import styles from "./App.module.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,18 +45,51 @@ function App() {
     dispatch(setUser(null)); // Înlătură utilizatorul din Redux
   };
 
+  const [calories, setCalories] = useState(0);
+  const [nonRecommendedFoods, setNonRecommendedFoods] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const handleSetCalories = (newCalories, restrictedFoods) => {
+    setCalories(newCalories);
+    setNonRecommendedFoods(restrictedFoods);
+  };
+  
+  const handleAddProduct = (product) => {
+    setProducts((prevProducts) => [...prevProducts, product]);
+  };
+  
+
+
+  const imagesRightContent = (
+    <div className={styles.imagesContainer}>
+      <img src="banana.png" alt="Banana" />
+      <img src="strawberry.png" alt="Strawberry" />
+      <img src="frunze.png" alt="Leaves" />
+      <img src="vector.png" alt="Decoration" />
+    </div>
+  );
+
   return (
     <Router>
       <Header isLoggedIn={!!token} userName={user} onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/diary" element={token ? <DiaryPage /> : <LoginPage />} />
-        <Route path="/calculator" element={token ? <CalculatorPage /> : <LoginPage />} />
+        <Route path="/" element={<PageLayout rightContent={imagesRightContent}><MainPage /></PageLayout>} />
+        <Route path="/login" element={<PageLayout rightContent={imagesRightContent}><LoginPage onLogin={handleLogin} /></PageLayout>} />
+        <Route path="/register" element={<PageLayout rightContent={imagesRightContent}><RegistrationPage /></PageLayout>} />
+        <Route path="/calculator" element={token ? (<PageLayout rightContent={<Sidebar calories={calories} 
+            consumedCalories={products.reduce((sum, p) => sum + p.calories, 0)} 
+            nonRecommendedFoods={nonRecommendedFoods} />} >
+            <CalculatorPage onCalculate={handleSetCalories} /></PageLayout>) : <LoginPage />} />
+
+        <Route path="/diary" element={token ? (<PageLayout rightContent={<Sidebar calories={calories} 
+            consumedCalories={products.reduce((sum, p) => sum + p.calories, 0)} 
+            nonRecommendedFoods={nonRecommendedFoods} />}><DiaryPage onAddProduct={handleAddProduct} />
+            </PageLayout>) : <LoginPage />} />
+
       </Routes>
     </Router>
   );
+  
 }
 
 export default App;

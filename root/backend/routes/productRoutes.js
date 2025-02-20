@@ -1,11 +1,11 @@
 import express from 'express';
 import Product from '../models/CalorieIntake.js';
-import { protect } from '../middleware/authMiddleware.js';
+
 
 const router = express.Router();
 
 // Ruta GET pentru obținerea detaliilor produsului
-router.get('/products', protect , async (req, res) => {
+router.get('/products',  async (req, res) => {
   console.log('Received request with title:', req.query.title);  // Debugging log
   const { title } = req.query;
   try {

@@ -1,0 +1,68 @@
+.sidebar {
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 6px;
+}
+
+h3 {
+        font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #212121;
+    margin-left: -20px;
+    margin-bottom: 20px;
+}
+
+/* Styling pentru lista de elemente */
+.summary ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+/* Styling pentru fiecare item */
+.summary .item {
+display: flex;
+justify-content: space-between;
+margin-bottom: 10px;
+width: 288px; /* Adăugați puțin spațiu între linii */
+}
+
+/* Alinierea etichetelor la stânga */
+.summary .label {
+text-align: left;
+flex: 1;
+}
+
+/* Alinierea valorilor la dreapta */
+.summary .value {
+text-align: right;
+flex: 1;
+padding-left: 10px; /* Spațiu între eticheta și valoare */
+}
+
+span {
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #9B9FAA;
+}
+
+p {
+    font-family: 'Verdana';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+letter-spacing: 0.04em;
+color: #9B9FAA;
+margin-left: -60px;
+}
+

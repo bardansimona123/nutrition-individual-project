@@ -5,6 +5,8 @@
     width: auto;
     height: 100%;
     margin-left: auto;
+    z-index: 1;
+    padding-right: 20px;
 }
 
 .userInfo span {
