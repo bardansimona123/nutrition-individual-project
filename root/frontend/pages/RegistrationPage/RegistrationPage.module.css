@@ -1,0 +1,78 @@
+.buttonRegister {
+    width: 181px;
+    height: 44px;
+    background: #FC842D;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    border: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonLogin {
+    width: 182px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 2px solid #FC842D;
+    border-radius: 30px;
+    color: #FC842D;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    gap: 32px;
+}
+
+.registrationPage .label {
+    font-family: 'Verdana';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 17px;
+letter-spacing: 0.04em;
+color: #9B9FAA;
+}
+
+.input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #9B9FAA;
+  }
+
+  .inputLine {
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 40px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+.registerTitle {    
+    width: 60px;
+    height: 17px;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #FC842D;
+    margin-bottom: 55px;
+}
+
+.registrationPage {
+    margin-top: 160px;
+}

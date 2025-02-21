@@ -32,26 +32,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles.loginPage}>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
+    <div className={styles.loginPage} autoComplete="off">
+      <h2 className={styles.loginTitle}>Login</h2>
+      <form onSubmit={handleLogin} className={styles.form}>
+        <label className={styles.label}>Email *</label>
+        <div className={styles.inputLine}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.input}
+            autoComplete="off"
+          />
+        </div>
+
+        <label className={styles.label}>Password *</label>
+        <div className={styles.inputLine}>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className={styles.buttons}>
+          <button type="submit" className={styles.buttonLogin}>
+            Log in
+          </button>
+          <button type="button" className={styles.buttonRegister} onClick={() => navigate("/register")}>
+            Register
+          </button>
+        </div>
       </form>
 
       {errorMessage && <div className={styles.error}>{errorMessage}</div>}

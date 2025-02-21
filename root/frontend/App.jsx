@@ -11,6 +11,10 @@ import CalculatorPage from './pages/CalculatorPage/CalculatorPage';
 import Header from './components/Header/Header';
 import Sidebar from "./components/Sidebar/Sidebar";
 import PageLayout from "./components/PageLayout/PageLayout";
+import banana from './images/banana.png';
+import strawberry from './images/strawberry.png';
+import frunze from './images/frunze.png';
+import vector from './images/vector.png';
 import styles from "./App.module.css";
 
 function App() {
@@ -58,14 +62,12 @@ function App() {
     setProducts((prevProducts) => [...prevProducts, product]);
   };
   
-
-
   const imagesRightContent = (
     <div className={styles.imagesContainer}>
-      <img src="banana.png" alt="Banana" />
-      <img src="strawberry.png" alt="Strawberry" />
-      <img src="frunze.png" alt="Leaves" />
-      <img src="vector.png" alt="Decoration" />
+      <img className={styles.bananaImg} src={banana} alt="Banana" />
+      <img className={styles.strawberryImg} src={strawberry} alt="Strawberry" />
+      <img className={styles.frunzeImg} src={frunze} alt="Leaves" />
+      <img className={styles.vectorImg} src={vector} alt="Decoration" />
     </div>
   );
 

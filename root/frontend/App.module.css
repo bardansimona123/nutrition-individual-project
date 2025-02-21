@@ -1,11 +1,42 @@
 .imagesContainer {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    margin-right: 0; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
   }
   
-  .imagesContainer img {
-    max-width: 80%;
-  }
+.vectorImg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 816px;
+}
+
+.bananaImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+}
+
+.strawberryImg {
+  position: absolute;
+  bottom: 65px;
+  right: 36px;
+  width: auto;
+  z-index: 1;
+  width: 286px;
+  height: 279px;
+}
+
+.frunzeImg {
+  position: absolute;
+  bottom: 30px;
+  right: 200px;
+  z-index: 2;
+}
   

@@ -6,7 +6,7 @@ const DailyCalorieIntake = ({ calories, nonRecommendedFoods, onClose }) => (
     <button className={styles.closeButton} onClick={onClose}>✖</button>
     <h2 className={styles.title}>Your recommended daily calorie intake is</h2>
     <div className={styles.calories}>
-      <p>{calories ? `${calories} kcal` : 'Calculating calories...'}</p>
+      <p className={styles.kcal}>{calories ? `${calories} kcal` : 'Calculating calories...'}</p>
     </div>
     <div className={styles.separator}></div>
     <h3 className={styles.foods}>Foods you should not eat</h3>
